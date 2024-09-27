@@ -1,16 +1,19 @@
-import { createApp } from "vue";
-import "./utils/axios";
-import "./style/index.less";
-import App from "./App.vue";
-import router from "./router";
-import NProgress from "nprogress";
-import "nprogress/nprogress.css";
-const app = createApp(App);
-app.use(router);
-app.mount("#app");
+import 'ant-design-vue/dist/reset.css'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { createApp } from 'vue'
+
+import App from './App.vue'
+import router from './router'
+import './style/index.less'
+import './utils/axios'
+
+const app = createApp(App)
+app.use(router)
+app.mount('#app')
 NProgress.configure({
-  easing: "ease",
+  easing: 'ease',
   speed: 500,
   showSpinner: false,
   trickleSpeed: 400,
-});
+})

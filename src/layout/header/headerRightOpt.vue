@@ -11,23 +11,24 @@
   </div>
 </template>
 <script lang="ts" setup>
-import axios from "axios";
-import { computed, h } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import axios from 'axios'
+import { computed, h } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
-import { useLoginStore } from "@/store/useLoginStore";
-import Icon from "@/components/Icon/Icon.vue";
-import { useUacStore } from "@/store/useUacStore";
+import Icon from '@/components/Icon/Icon.vue'
+import { useLoginStore } from '@/store/useLoginStore'
+import { useUacStore } from '@/store/useUacStore'
 
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
 const userFirstName = computed(() => {
-  return useLoginStore().getName()?.slice(0, 1);
-});
+  return useLoginStore().value.username?.slice(0, 1)
+})
 
 function logout() {
-  useUacStore().removeAsyncRoutes(router);
-  router.push("/login");
+  useLoginStore().value = {}
+  useUacStore().removeAsyncRoutes(router)
+  router.push('/login')
 }
 </script>
 <style lang="less" scoped>

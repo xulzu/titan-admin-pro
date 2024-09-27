@@ -12,7 +12,7 @@ export default defineConfig({
   },
 
   server: {
-    port: 2000,
+    port: 8000,
     host: '0.0.0.0',
     open: true,
     proxy: {
@@ -21,9 +21,10 @@ export default defineConfig({
         ws: true,
       },
       '^/api': {
-        target: 'http://172.31.61.168:9999',
+        target: 'http://172.31.61.130:8000',
         // target: 'https://siem.eastmoney.com',
         changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },

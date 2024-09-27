@@ -1,28 +1,32 @@
 {
-  "name": "titan-admin",
+  "name": "hedwig-admin",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "serve": "vite",
-    "build": " vite build",
-    "preview": "vite preview"
+    "build": " vite build"
   },
   "dependencies": {
     "@purge-icons/generated": "^0.10.0",
+    "@vueuse/core": "^11.1.0",
+    "@vueuse/router": "^11.1.0",
     "ant-design-vue": "^4.2.5",
     "axios": "^1.7.4",
     "dayjs": "^1.11.13",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
-    "vue": "^3.4.37",
+    "query-string": "^9.1.0",
+    "vue": "^3.5.8",
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.7.2",
     "@types/nprogress": "^0.2.3",
     "@vitejs/plugin-vue": "^5.1.2",
+    "@vue/compiler-sfc": "^3.5.8",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^13.0.0",
     "autoprefixer": "^10.4.20",
