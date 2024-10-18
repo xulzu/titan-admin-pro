@@ -6,15 +6,14 @@
       <li>本项目为基于vue3 + vite + less的极简后台模板</li>
       <li>除了***axios***外并无其他初始依赖</li>
       <li>方便使用时自己添加eslint、ui库等等各种库</li>
-
       <li>route: {{ route.path }}</li>
     </ul>
   </div>
 </template>
 <script lang="ts" setup>
-import { useRoute } from "vue-router";
+import { useRoute } from 'vue-router'
 
-const route = useRoute();
+const route = useRoute()
 </script>
 <style lang="less" scoped>
 .dashboard {
