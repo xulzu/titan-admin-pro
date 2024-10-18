@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "serve": "vite",
-    "build": " vite build"
+    "build": " vite build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@purge-icons/generated": "^0.10.0",
