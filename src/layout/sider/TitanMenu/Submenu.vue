@@ -11,11 +11,7 @@
       <Render :nodeFn="icon" v-if="icon"></Render>
       <Transition name="collapsed">
         <div class="titan-submenu-item-wrapper" v-show="!collapsed">
-          <span
-            class="titan-submenu-item-text"
-            :class="{ 't-ml-10': !!icon }"
-            >{{ label }}</span
-          >
+          <span class="titan-submenu-item-text" :class="{ 't-ml-10': !!icon }">{{ label }}</span>
           <div
             class="titan-menu-arrow"
             :class="{
@@ -25,60 +21,59 @@
         </div>
       </Transition>
     </div>
-    <Transition v-if="!collapsed">
-      <ul
-        class="titan-menu-sub"
-        :style="{
-          height: (children?.length || 0) * 44 + 'px',
-        }"
-        v-show="open"
-      >
+    <div
+      v-if="!collapsed"
+      class="sub-box"
+      :class="{
+        'sub-box-rows-0': !open,
+      }"
+    >
+      <ul class="titan-menu-sub">
         <MenuItem
           ref="menuItemRefs"
           :label="item.label"
           :icon="item.icon"
           :key="item.key"
-          v-for="(item, index) in children"
+          v-for="item in children"
         ></MenuItem>
       </ul>
-    </Transition>
+    </div>
   </li>
 </template>
 <script lang="ts" setup>
-import { computed, inject, ref, getCurrentInstance, type VNode } from "vue";
-import { TitanMenuItemType } from "./type";
-import MenuItem from "./MenuItem.vue";
+import { type VNode, computed, getCurrentInstance, inject, ref } from 'vue'
+
+import MenuItem from './MenuItem.vue'
+import { TitanMenuItemType } from './type'
 
 const props = defineProps<{
-  label: string;
-  icon?: () => VNode;
-  children?: TitanMenuItemType[];
-}>();
+  label: string
+  icon?: () => VNode
+  children?: TitanMenuItemType[]
+}>()
 function Render(props: { nodeFn: () => VNode }) {
-  return props.nodeFn();
+  return props.nodeFn()
 }
-const instance = getCurrentInstance();
-const openKeys = inject("Titan-menu-openKeys") as any;
-const collapsed = inject("Titan-menu-collapsed") as any;
-const activedKey = inject("Titan-menu-activedKey") as any;
-const menuItemRefs = ref<InstanceType<typeof MenuItem>[]>();
+const instance = getCurrentInstance()
+const openKeys = inject('Titan-menu-openKeys') as any
+const collapsed = inject('Titan-menu-collapsed') as any
+const activedKey = inject('Titan-menu-activedKey') as any
+const menuItemRefs = ref<InstanceType<typeof MenuItem>[]>()
 const open = computed(() => {
-  return openKeys.value?.includes(instance?.vnode.key);
-});
+  return openKeys.value?.includes(instance?.vnode.key)
+})
 const childActive = computed(() => {
-  return props.children?.map((item) => item.key).includes(activedKey.value);
-});
+  return props.children?.map((item) => item.key).includes(activedKey.value)
+})
 function toggle() {
-  if (collapsed.value) return;
+  if (collapsed.value) return
   if (open.value) {
-    openKeys.value = openKeys.value?.filter(
-      (item: string) => item !== instance?.vnode.key
-    );
+    openKeys.value = openKeys.value?.filter((item: string) => item !== instance?.vnode.key)
   } else {
     if (!openKeys.value?.length) {
-      openKeys.value = [];
+      openKeys.value = []
     }
-    openKeys.value.push(instance?.vnode.key);
+    openKeys.value.push(instance?.vnode.key)
   }
 }
 </script>
@@ -87,7 +82,8 @@ function toggle() {
   margin-left: 10px;
 }
 .titan-submenu {
-  transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+  transition:
+    border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
     background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
     padding 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   border-radius: 8px;
@@ -110,7 +106,9 @@ function toggle() {
   line-height: 40px;
   display: flex;
   align-items: center;
-  transition: border-color 0.3s, background 0.3s,
+  transition:
+    border-color 0.3s,
+    background 0.3s,
     padding 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
   padding-left: 20px;
   &:hover {
@@ -164,11 +162,12 @@ function toggle() {
     height: 1.5px;
     background-color: currentcolor;
     border-radius: 6px;
-    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+    transition:
+      background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    content: "";
+    content: '';
     transform: rotate(-45deg) translateX(2.5px);
   }
   &::after {
@@ -178,11 +177,12 @@ function toggle() {
     height: 1.5px;
     background-color: currentcolor;
     border-radius: 6px;
-    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+    transition:
+      background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    content: "";
+    content: '';
   }
   &.open::before {
     transform: rotate(45deg) translateX(1.5px) translateY(-2px);
@@ -192,25 +192,25 @@ function toggle() {
   }
 }
 
-.v-enter-active,
-.v-leave-active {
-  transition: height 0.25s ease, opacity 0.25s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-  height: 0 !important;
-}
-
 .collapsed-enter-active,
 .collapsed-leave-active {
-  transition: width 0.25s ease, opacity 0.25s ease;
+  transition:
+    width 0.25s ease,
+    opacity 0.25s ease;
 }
 
 .collapsed-enter-from,
 .collapsed-leave-to {
   opacity: 0;
   width: 0 !important;
+}
+
+.sub-box {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.sub-box-rows-0 {
+  grid-template-rows: 0fr;
 }
 </style>
