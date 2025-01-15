@@ -5,7 +5,14 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Root',
-    redirect: '/login',
+    redirect: '/home',
+    meta: {
+      title: '首页',
+    },
+  },
+  {
+    path: '/home',
+    component: () => import('@/views/home/index.vue'),
     meta: {
       title: '首页',
     },

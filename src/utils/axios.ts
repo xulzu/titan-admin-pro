@@ -4,7 +4,7 @@ import NProgress from 'nprogress'
 import { useLoginStore } from '@/store/useLoginStore'
 
 // axios默认配置
-axios.defaults.timeout = 2 * 60 * 1000 // 超时时间
+axios.defaults.timeout = 10 * 60 * 1000 // 超时时间
 axios.defaults.baseURL = import.meta.env.VITE_BaseAPI
 
 // http request 拦截器

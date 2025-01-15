@@ -7,8 +7,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    FLabelWrapper: typeof import('./src/components/FLabelWrapper.vue')['default']
+    FRadio: typeof import('./src/components/FRadio.vue')['default']
     Icon: typeof import('./src/components/Icon/Icon.vue')['default']
-    'ISystemUicons:chevronUpCircle': typeof import('~icons/system-uicons/chevron-up-circle')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

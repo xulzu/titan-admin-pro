@@ -1,6 +1,6 @@
 <template>
-  <router-view v-if="route.path === '/login'" />
-  <div class="titan-layout" v-else>
+  <router-view v-if="['/home', '/login'].includes(route.path)" />
+  <!-- <div class="titan-layout" v-else>
     <TitanSider></TitanSider>
     <div class="layout_r">
       <TitanHeader></TitanHeader>
@@ -8,13 +8,15 @@
         <router-view />
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <script lang="ts" setup>
-import TitanSider from "./sider/index.vue";
-import TitanHeader from "./header/index.vue";
-import { useRoute } from "vue-router";
-const route = useRoute();
+import { useRoute } from 'vue-router'
+
+import TitanHeader from './header/index.vue'
+import TitanSider from './sider/index.vue'
+
+const route = useRoute()
 </script>
 <style lang="less" scoped>
 .titan-layout {
