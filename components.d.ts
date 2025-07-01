@@ -9,7 +9,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Icon: typeof import('./src/components/Icon/Icon.vue')['default']
-    'ISystemUicons:chevronUpCircle': typeof import('~icons/system-uicons/chevron-up-circle')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
