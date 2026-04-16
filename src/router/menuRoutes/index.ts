@@ -1,46 +1,70 @@
-import type { RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router'
 
 //菜单路由，在这里配置的路由会被解析到右侧菜单以供点击
 const routes: RouteRecordRaw[] = [
   {
-    path: "/dashboard",
-    component: () => import("@/views/dashboard/index.vue"),
+    path: '/dashboard',
+    component: () => import('@/views/dashboard/index.vue'),
     meta: {
-      title: "数据汇总",
-      icon: "hugeicons:dashboard-square-setting",
+      title: '数据汇总',
+      icon: 'hugeicons:dashboard-square-setting',
     },
   },
   {
-    path: "/sys",
+    path: '/sys',
     meta: {
-      title: "系统管理",
-      icon: "material-symbols:admin-panel-settings-rounded",
+      title: '系统管理',
+      icon: 'material-symbols:admin-panel-settings-rounded',
     },
-    redirect: "/sys-permission",
+    redirect: '/sys-permission',
     children: [
       {
-        path: "/sys-permission",
-        component: () => import("@/views/dashboard/index.vue"),
+        path: '/sys-permission',
+        component: () => import('@/views/dashboard/index.vue'),
         meta: {
-          title: "权限设置",
+          title: '权限设置',
         },
       },
       {
-        path: "/sys-log",
-        component: () => import("@/views/dashboard/index.vue"),
+        path: '/sys-log',
+        component: () => import('@/views/dashboard/index.vue'),
         meta: {
-          title: "审计日志",
+          title: '审计日志',
         },
       },
     ],
   },
   {
-    path: "/log",
-    component: () => import("@/views/dashboard/index.vue"),
+    path: '/sys-1',
     meta: {
-      title: "系统日志",
-      icon: "material-symbols:logo-dev",
+      title: '系统设置',
+      icon: 'material-symbols:admin-panel-settings-rounded',
+    },
+    redirect: '/sys-permission1',
+    children: [
+      {
+        path: '/sys-permission1',
+        component: () => import('@/views/dashboard/index.vue'),
+        meta: {
+          title: '权限设置',
+        },
+      },
+      {
+        path: '/sys-log1',
+        component: () => import('@/views/dashboard/index.vue'),
+        meta: {
+          title: '审计日志',
+        },
+      },
+    ],
+  },
+  {
+    path: '/log',
+    component: () => import('@/views/dashboard/index.vue'),
+    meta: {
+      title: '系统日志',
+      icon: 'material-symbols:logo-dev',
     },
   },
-];
-export default routes;
+]
+export default routes

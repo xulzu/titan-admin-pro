@@ -67,13 +67,15 @@ const childActive = computed(() => {
 })
 function toggle() {
   if (collapsed.value) return
+  const key = instance?.vnode.key
+  if (!key) return
   if (open.value) {
-    openKeys.value = openKeys.value?.filter((item: string) => item !== instance?.vnode.key)
+    openKeys.value = openKeys.value?.filter((item: string) => item !== key)
   } else {
-    if (!openKeys.value?.length) {
+    if (!openKeys.value) {
       openKeys.value = []
     }
-    openKeys.value.push(instance?.vnode.key)
+    openKeys.value = [...openKeys.value, key]
   }
 }
 </script>
